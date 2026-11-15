@@ -18,7 +18,7 @@ export default function NotFoundPage() {
       </p>
       <button
         onClick={() => navigate('/')}
-        className="px-5 py-2.5 rounded-xl text-xs font-bold bg-nasa-blue hover:bg-blue-700 text-white shadow transition-all flex items-center gap-2"
+        className="min-h-[44px] px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-nasa-blue hover:bg-blue-700 text-white shadow transition-all flex items-center justify-center gap-2"
       >
         <ArrowLeft className="w-4 h-4" />
         <span>Return to Mission Dashboard</span>

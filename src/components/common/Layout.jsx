@@ -55,12 +55,12 @@ export default function Layout() {
   }, [simulationSpeed, executeTelemetryTick])
 
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-space-950 text-gray-900 dark:text-gray-100 transition-colors">
+    <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-space-950 text-gray-900 dark:text-gray-100 transition-colors overflow-x-hidden">
       <Header dataSource={dataSource} />
 
-      <div className="flex flex-1">
+      <div className="flex flex-1 min-w-0">
         <Sidebar />
-        <main className="flex-1 p-4 sm:p-6 overflow-y-auto max-w-[1700px] mx-auto w-full">
+        <main className="flex-1 p-4 sm:p-6 overflow-y-auto max-w-[1700px] mx-auto w-full min-w-0 overflow-x-hidden">
           <Outlet />
         </main>
       </div>

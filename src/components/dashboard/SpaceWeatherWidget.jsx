@@ -26,16 +26,16 @@ export default function SpaceWeatherWidget() {
   }, [])
 
   return (
-    <div className="mission-card">
-      <div className="flex items-center justify-between mb-3">
-        <div className="flex items-center gap-2">
-          <Sun className="w-4 h-4 text-amber-500" />
-          <h3 className="heading-display text-xs sm:text-sm font-bold text-gray-900 dark:text-white">
-            HELIOSPHERIC SPACE WEATHER (NASA DONKI)
+    <div className="mission-card w-full max-w-full overflow-hidden">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <div className="flex items-center gap-2 min-w-0">
+          <Sun className="w-4 h-4 text-amber-500 shrink-0" />
+          <h3 className="heading-display text-xs sm:text-sm font-bold text-gray-900 dark:text-white truncate">
+            HELIOSPHERIC SPACE WEATHER
           </h3>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 shrink-0">
           <span className={`text-[9px] font-bold px-2 py-0.5 rounded-full ${
             source === 'LIVE' ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800' :
             source === 'CACHED' ? 'bg-blue-100 text-blue-800 dark:bg-blue-950/60 dark:text-blue-400 border border-blue-300 dark:border-blue-800' :
@@ -46,10 +46,11 @@ export default function SpaceWeatherWidget() {
           <button
             onClick={fetchWeather}
             disabled={loading}
-            className="p-1 rounded text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+            className="min-w-[40px] min-h-[40px] flex items-center justify-center p-2 rounded-xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
             title="Refresh NASA DONKI 30-day stream"
+            aria-label="Refresh Space Weather"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin text-nasa-blue' : ''}`} />
+            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-nasa-blue' : ''}`} />
           </button>
         </div>
       </div>
@@ -73,7 +74,7 @@ export default function SpaceWeatherWidget() {
             return (
               <div
                 key={evt.id || idx}
-                className="p-2.5 rounded-lg bg-gray-50 dark:bg-space-800 border border-gray-100 dark:border-space-700 flex items-start justify-between gap-3 text-xs"
+                className="p-2.5 rounded-xl bg-gray-50 dark:bg-space-800 border border-gray-100 dark:border-space-700 flex flex-col sm:flex-row sm:items-start justify-between gap-2 text-xs"
               >
                 <div className="flex items-start gap-2">
                   <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold mono-data flex items-center gap-1 ${

@@ -32,12 +32,12 @@ export default function AlertFeedWidget() {
         </div>
 
         {/* Severity Filter Tabs */}
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1 flex-wrap">
           {['all', 'critical', 'warning', 'info'].map((sev) => (
             <button
               key={sev}
               onClick={() => setFilterSeverity(sev)}
-              className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase transition-colors ${
+              className={`min-h-[36px] sm:min-h-[40px] px-2.5 py-1 rounded-lg text-[10px] sm:text-xs font-bold uppercase transition-colors flex items-center justify-center ${
                 filterSeverity === sev
                   ? 'bg-nasa-blue text-white dark:bg-nasa-blueLight dark:text-space-950'
                   : 'bg-gray-100 dark:bg-space-800 text-gray-500 hover:text-gray-900 dark:hover:text-white'
@@ -101,22 +101,24 @@ export default function AlertFeedWidget() {
                 </div>
 
                 {/* Actions: Acknowledge & Dismiss */}
-                <div className="flex items-center gap-1 flex-shrink-0">
+                <div className="flex items-center gap-1.5 flex-shrink-0">
                   {!alt.acknowledged && (
                     <button
                       onClick={() => acknowledgeAlert(alt.id)}
-                      className="p-1 rounded bg-gray-200 dark:bg-space-700 hover:bg-emerald-500 hover:text-white text-gray-600 dark:text-gray-300 text-[10px] font-semibold transition-colors"
+                      className="min-w-[40px] min-h-[40px] flex items-center justify-center p-2 rounded-xl bg-gray-200 dark:bg-space-700 hover:bg-emerald-500 hover:text-white text-gray-700 dark:text-gray-300 text-xs font-semibold transition-colors"
                       title="Acknowledge alert"
+                      aria-label="Acknowledge alert"
                     >
-                      <Check className="w-3 h-3" />
+                      <Check className="w-4 h-4" />
                     </button>
                   )}
                   <button
                     onClick={() => dismissAlert(alt.id)}
-                    className="p-1 rounded bg-gray-200 dark:bg-space-700 hover:bg-red-500 hover:text-white text-gray-400 hover:text-white transition-colors"
+                    className="min-w-[40px] min-h-[40px] flex items-center justify-center p-2 rounded-xl bg-gray-200 dark:bg-space-700 hover:bg-red-500 hover:text-white text-gray-400 hover:text-white transition-colors"
                     title="Dismiss alert"
+                    aria-label="Dismiss alert"
                   >
-                    <X className="w-3 h-3" />
+                    <X className="w-4 h-4" />
                   </button>
                 </div>
               </div>

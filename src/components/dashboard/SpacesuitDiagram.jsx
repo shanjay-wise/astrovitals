@@ -31,7 +31,7 @@ function AstronautSkeleton() {
       </div>
 
       {/* 3D Viewport Skeleton */}
-      <div className="relative w-full h-[360px] sm:h-[390px] rounded-xl bg-slate-900 border border-gray-200/80 dark:border-space-700/80 flex flex-col items-center justify-center gap-3">
+      <div className="relative w-full h-[52vh] min-h-[350px] max-h-[460px] sm:h-[390px] rounded-xl bg-slate-900 border border-gray-200/80 dark:border-space-700/80 flex flex-col items-center justify-center gap-3">
         <div className="w-10 h-10 border-3 border-nasa-blue dark:border-nasa-blueLight border-t-transparent rounded-full animate-spin" />
         <span className="text-[10px] font-mono font-bold text-gray-400 uppercase tracking-widest text-center px-4">
           INITIALIZING NASA 3D ASTRONAUT TELEMETRY...

@@ -87,10 +87,10 @@ export default function DataSourcesPage() {
                 href={src.endpoint}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-nasa-blue dark:text-nasa-blueLight hover:underline font-semibold flex items-center gap-1 text-[11px]"
+                className="min-h-[44px] text-nasa-blue dark:text-nasa-blueLight hover:underline font-semibold flex items-center gap-1.5 text-xs break-all"
               >
-                <span>{src.endpoint}</span>
-                <ExternalLink className="w-3 h-3" />
+                <span className="break-all">{src.endpoint}</span>
+                <ExternalLink className="w-3.5 h-3.5 shrink-0" />
               </a>
             </div>
           ))}

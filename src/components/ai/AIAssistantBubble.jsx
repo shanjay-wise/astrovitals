@@ -90,12 +90,12 @@ export default function AIAssistantBubble() {
   }
 
   return (
-    <div className="fixed bottom-5 right-5 z-50">
+    <div className="fixed bottom-3 right-3 sm:bottom-5 sm:right-5 z-40">
       {/* Floating Trigger Bubble */}
       {!isAiBubbleOpen ? (
         <button
           onClick={handleOpenBubble}
-          className={`relative p-3.5 rounded-full shadow-2xl transition-all duration-300 hover:scale-110 flex items-center justify-center ${
+          className={`relative min-w-[50px] min-h-[50px] p-3 rounded-full shadow-2xl transition-all duration-300 hover:scale-105 flex items-center justify-center ${
             aiPulseSeverity === 'critical'
               ? 'bg-red-600 text-white animate-pulse ring-4 ring-red-400'
               : aiPulseSeverity === 'caution'
@@ -103,6 +103,7 @@ export default function AIAssistantBubble() {
               : 'bg-nasa-blue text-white dark:bg-nasa-blueLight dark:text-space-950 hover:shadow-nasa-blue/40'
           }`}
           title="Open AstroAI Health Assistant"
+          aria-label="Open AstroAI Health Assistant"
         >
           <Bot className="w-7 h-7" />
           {/* Status Dot */}
@@ -110,21 +111,21 @@ export default function AIAssistantBubble() {
         </button>
       ) : (
         /* Expanded Chat Panel */
-        <div className="w-[90vw] sm:w-[420px] h-[550px] max-h-[85vh] bg-white dark:bg-space-900 border border-gray-200 dark:border-space-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+        <div className="w-[calc(100vw-1.5rem)] sm:w-[420px] max-w-[420px] h-[520px] max-h-[calc(100dvh-5.5rem)] bg-white dark:bg-space-900 border border-gray-200 dark:border-space-700 rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200">
           {/* Header */}
-          <div className="p-3.5 bg-gradient-to-r from-nasa-blue to-blue-700 text-white flex items-center justify-between">
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 rounded-lg bg-white/10 backdrop-blur-sm">
+          <div className="p-3 bg-gradient-to-r from-nasa-blue to-blue-700 text-white flex items-center justify-between">
+            <div className="flex items-center gap-2 min-w-0">
+              <div className="p-1.5 rounded-lg bg-white/10 backdrop-blur-sm shrink-0">
                 <Bot className="w-5 h-5 text-white" />
               </div>
-              <div>
+              <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <h3 className="heading-display text-sm font-bold tracking-wide">ASTRO-AI ASSISTANT</h3>
-                  <span className="text-[9px] px-1 rounded bg-emerald-500/30 text-emerald-300 font-semibold">
+                  <h3 className="heading-display text-xs sm:text-sm font-bold tracking-wide truncate">ASTRO-AI ASSISTANT</h3>
+                  <span className="text-[9px] px-1 rounded bg-emerald-500/30 text-emerald-300 font-semibold shrink-0">
                     AUTONOMOUS
                   </span>
                 </div>
-                <p className="text-[10px] text-blue-200">
+                <p className="text-[10px] text-blue-200 truncate">
                   Active Subject: {currentAstro.name} • NASA-STD-3001
                 </p>
               </div>
@@ -132,9 +133,10 @@ export default function AIAssistantBubble() {
 
             <button
               onClick={() => setAiBubbleOpen(false)}
-              className="p-1.5 rounded-lg hover:bg-white/10 text-blue-200 hover:text-white transition-colors"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center p-1.5 rounded-xl hover:bg-white/10 text-blue-200 hover:text-white transition-colors shrink-0"
+              aria-label="Close Assistant"
             >
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5" />
             </button>
           </div>
 
@@ -183,7 +185,7 @@ export default function AIAssistantBubble() {
               <button
                 key={idx}
                 onClick={() => handleSendMessage(chip)}
-                className="px-2.5 py-1 rounded-full text-[10px] font-medium bg-white dark:bg-space-700 hover:bg-gray-100 dark:hover:bg-space-600 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-space-600 whitespace-nowrap transition-colors"
+                className="min-h-[38px] px-3 py-1.5 rounded-full text-xs font-medium bg-white dark:bg-space-700 hover:bg-gray-100 dark:hover:bg-space-600 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-space-600 whitespace-nowrap transition-colors flex items-center shrink-0"
               >
                 {chip}
               </button>
@@ -200,14 +202,15 @@ export default function AIAssistantBubble() {
               placeholder="Ask AstroAI medical assistant..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="flex-1 px-3 py-1.5 rounded-xl text-xs bg-gray-100 dark:bg-space-800 border border-gray-200 dark:border-space-700 text-gray-900 dark:text-white focus:outline-none focus:border-nasa-blue"
+              className="flex-1 min-h-[44px] px-3 py-2 rounded-xl text-xs sm:text-sm bg-gray-100 dark:bg-space-800 border border-gray-200 dark:border-space-700 text-gray-900 dark:text-white focus:outline-none focus:border-nasa-blue"
             />
             <button
               type="submit"
               disabled={loading || !input.trim()}
-              className="p-2 rounded-xl bg-nasa-blue text-white hover:bg-blue-700 disabled:opacity-40 transition-colors"
+              className="min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 rounded-xl bg-nasa-blue text-white hover:bg-blue-700 disabled:opacity-40 transition-colors shrink-0"
+              aria-label="Send message"
             >
-              <Send className="w-3.5 h-3.5" />
+              <Send className="w-4 h-4" />
             </button>
           </form>
 

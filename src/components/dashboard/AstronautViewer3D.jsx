@@ -400,10 +400,10 @@ function HotspotOverlay({
   const maxY = (containerH || 390) - PADDING - PILL_H / 2
   placements.forEach(p => {
     p.finalSy = Math.max(minY, Math.min(maxY, p.wantedSy))
-    // Pill X centre: left/right of model centre-line
-    // containerW/2 approximates the canvas horizontal centre
+    // Pill X centre: left/right of model centre-line, scaling down nicely on 360px-430px phones
     const midX = (containerW || 320) / 2
-    p.labelX   = midX + p.side * LABEL_OFFSET_X
+    const dynamicOffset = Math.min(LABEL_OFFSET_X, Math.max(65, (containerW || 320) * 0.28))
+    p.labelX   = midX + p.side * dynamicOffset
     // Clamp pill X so it stays inside container
     p.labelX   = Math.max(PADDING + PILL_W / 2,
                            Math.min((containerW || 320) - PADDING - PILL_W / 2, p.labelX))
@@ -488,11 +488,10 @@ function HotspotOverlay({
                   bottom:     'calc(100% + 8px)',
                   left:       '50%',
                   transform:  'translateX(-50%)',
-                  width:      264,
                   zIndex:     30,
                   pointerEvents: 'auto',
                 }}
-                className="p-3 rounded-xl bg-white/97 dark:bg-slate-900/97 backdrop-blur-md border border-gray-200 dark:border-slate-700 shadow-2xl text-left animate-in fade-in zoom-in-95 duration-150"
+                className="p-3 rounded-xl bg-white/97 dark:bg-slate-900/97 backdrop-blur-md border border-gray-200 dark:border-slate-700 shadow-2xl text-left w-[250px] max-w-[calc(100vw-3rem)] animate-in fade-in zoom-in-95 duration-150"
               >
                 <div className="flex items-center justify-between gap-2 mb-1.5 border-b border-gray-100 dark:border-slate-800 pb-1.5">
                   <span className="text-xs font-bold text-gray-900 dark:text-white flex items-center gap-1.5 truncate">
@@ -697,15 +696,15 @@ export default function AstronautViewer3D({ vitals, statuses, onFallbackTo2D }) 
           </h3>
         </div>
         <div className="flex items-center gap-1.5 flex-wrap">
-          <div className="flex items-center bg-gray-100 dark:bg-space-800 p-0.5 rounded-lg border border-gray-200 dark:border-space-700 text-[10px]">
-            <button onClick={() => handleViewPreset('front')} className="px-2 py-0.5 rounded text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-semibold transition-colors">Front</button>
-            <button onClick={() => handleViewPreset('back')}  className="px-2 py-0.5 rounded text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-semibold transition-colors">Back</button>
-            <button onClick={() => handleViewPreset('reset')} className="p-1 rounded text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors" title="Reset View">
-              <RotateCcw className="w-3 h-3" />
+          <div className="flex items-center bg-gray-100 dark:bg-space-800 p-0.5 rounded-xl border border-gray-200 dark:border-space-700 text-xs">
+            <button onClick={() => handleViewPreset('front')} className="min-h-[44px] px-3 py-1.5 rounded-lg text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-semibold transition-colors">Front</button>
+            <button onClick={() => handleViewPreset('back')}  className="min-h-[44px] px-3 py-1.5 rounded-lg text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white font-semibold transition-colors">Back</button>
+            <button onClick={() => handleViewPreset('reset')} className="min-h-[44px] min-w-[44px] flex items-center justify-center p-1.5 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors" title="Reset View" aria-label="Reset View">
+              <RotateCcw className="w-4 h-4" />
             </button>
           </div>
           {onFallbackTo2D && (
-            <button onClick={onFallbackTo2D} className="text-[10px] px-2 py-1 rounded-lg bg-gray-100 dark:bg-space-800 hover:bg-gray-200 dark:hover:bg-space-700 text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-space-700 font-mono transition-colors" title="Switch to 2D SVG Diagram">
+            <button onClick={onFallbackTo2D} className="min-h-[44px] text-xs px-3 py-1.5 rounded-xl bg-gray-100 dark:bg-space-800 hover:bg-gray-200 dark:hover:bg-space-700 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-space-700 font-mono transition-colors" title="Switch to 2D SVG Diagram">
               2D Diagram
             </button>
           )}
@@ -714,11 +713,11 @@ export default function AstronautViewer3D({ vitals, statuses, onFallbackTo2D }) 
 
       {/* Layer filter */}
       <div className="w-full flex items-center justify-between gap-2 mb-2 px-1">
-        <div className="flex items-center gap-1 text-[10px] text-gray-400">
-          <Layers className="w-3 h-3 text-nasa-blue" />
+        <div className="flex items-center gap-1 text-xs text-gray-400">
+          <Layers className="w-3.5 h-3.5 text-nasa-blue" />
           <span className="font-semibold uppercase hidden sm:inline">Telemetry Layers:</span>
         </div>
-        <div className="flex items-center gap-1 bg-gray-100 dark:bg-space-800 p-0.5 rounded-lg border border-gray-200 dark:border-space-700 text-[10px] overflow-x-auto">
+        <div className="flex items-center gap-1.5 bg-gray-100 dark:bg-space-800 p-1 rounded-xl border border-gray-200 dark:border-space-700 text-xs overflow-x-auto max-w-full">
           {[
             { id: 'all',             label: 'All Systems'     },
             { id: 'vitals',          label: 'Vitals'          },
@@ -728,10 +727,10 @@ export default function AstronautViewer3D({ vitals, statuses, onFallbackTo2D }) 
             <button
               key={l.id}
               onClick={() => setActiveLayer(l.id)}
-              className={`px-2 py-0.5 rounded font-semibold whitespace-nowrap transition-colors ${
+              className={`min-h-[44px] px-3 py-2 rounded-lg font-semibold whitespace-nowrap transition-colors ${
                 activeLayer === l.id
                   ? 'bg-nasa-blue text-white shadow-xs'
-                  : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                  : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
               {l.label}
@@ -748,20 +747,20 @@ export default function AstronautViewer3D({ vitals, statuses, onFallbackTo2D }) 
       <div
         ref={containerRef}
         style={{ position: 'relative', overflow: 'hidden' }}
-        className="w-full h-[360px] sm:h-[390px] rounded-xl bg-radial from-slate-900 via-space-950 to-black border border-gray-200/80 dark:border-space-700/80 shadow-inner"
+        className="w-full h-[52vh] min-h-[350px] max-h-[460px] sm:h-[390px] rounded-xl bg-radial from-slate-900 via-space-950 to-black border border-gray-200/80 dark:border-space-700/80 shadow-inner"
       >
         {/* HUD watermarks */}
         <div className="absolute top-2 left-3 z-10 pointer-events-none flex items-center gap-1.5 text-[9px] font-mono text-cyan-400/80">
           <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
           <span>REAL-TIME 3D SPATIAL TELEMETRY</span>
         </div>
-        <div className="absolute top-2 right-3 z-10 pointer-events-none text-[9px] font-mono text-gray-400">
-          DRAG TO ROTATE • PINCH/SCROLL TO ZOOM
+        <div className="absolute top-2 right-3 z-10 pointer-events-none text-[9px] font-mono text-gray-400 text-right">
+          DRAG TO ROTATE • SCROLL PAGE OUTSIDE
         </div>
 
         {/* Three.js Canvas */}
         <Canvas
-          dpr={[1, 2]}
+          dpr={typeof window !== 'undefined' && window.innerWidth < 768 ? [1, 1.25] : [1, 2]}
           camera={{ position: [0, 0.1, 3.8], fov: 46 }}
           gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
           style={{ width: '100%', height: '100%', cursor: 'grab' }}

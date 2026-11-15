@@ -158,7 +158,7 @@ export default function FeatureSummaryGrid({ vitals, statuses, vitalsHistory = [
         <span className="text-[10px] text-gray-400">Click any card to inspect full telemetry</span>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {features.map((feat) => {
           const Icon = feat.icon
           return (

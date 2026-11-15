@@ -103,37 +103,38 @@ export default function MissionSimulatorModal({ isOpen, onClose }) {
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200">
-      <div className="bg-white dark:bg-space-900 border border-gray-200 dark:border-space-700 rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/70 backdrop-blur-sm animate-in fade-in duration-200 overflow-y-auto">
+      <div className="bg-white dark:bg-space-900 border border-gray-200 dark:border-space-700 rounded-2xl w-full max-w-2xl max-h-[calc(100dvh-2.5rem)] my-auto flex flex-col overflow-hidden shadow-2xl">
         {/* Header */}
-        <div className="p-4 bg-gradient-to-r from-nasa-blue to-blue-700 text-white flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
-            <Sliders className="w-5 h-5 text-white" />
-            <div>
-              <h2 className="heading-display text-base font-bold">MISSION SCENARIO & SPEED SIMULATOR</h2>
-              <p className="text-xs text-blue-200">Inject spaceflight emergencies for judges' interactive review</p>
+        <div className="p-3.5 sm:p-4 bg-gradient-to-r from-nasa-blue to-blue-700 text-white flex items-center justify-between shrink-0">
+          <div className="flex items-center gap-2.5 min-w-0">
+            <Sliders className="w-5 h-5 text-white shrink-0" />
+            <div className="min-w-0">
+              <h2 className="heading-display text-sm sm:text-base font-bold truncate">MISSION SCENARIO & SPEED SIMULATOR</h2>
+              <p className="text-[11px] text-blue-200 truncate">Inject spaceflight emergencies for judges' interactive review</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg hover:bg-white/10 text-blue-200 hover:text-white"
+            className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl hover:bg-white/10 text-blue-200 hover:text-white transition-colors shrink-0"
+            aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <div className="p-6 space-y-6">
+        <div className="p-4 sm:p-6 space-y-4 sm:space-y-6 overflow-y-auto flex-1">
           {/* Time Acceleration Control */}
           <div>
             <h4 className="text-xs font-bold uppercase tracking-wider text-gray-400 mb-2">
               Time Acceleration Engine
             </h4>
-            <div className="grid grid-cols-3 gap-3">
+            <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {[1, 10, 60].map((speed) => (
                 <button
                   key={speed}
                   onClick={() => setSimulationSpeed(speed)}
-                  className={`py-2.5 rounded-xl border text-xs font-bold transition-all ${
+                  className={`min-h-[44px] py-2.5 px-2 rounded-xl border text-xs font-bold transition-all flex items-center justify-center ${
                     simulationSpeed === speed
                       ? 'bg-nasa-blue text-white border-nasa-blue shadow-md'
                       : 'border-gray-200 dark:border-space-700 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-space-800'
@@ -146,9 +147,9 @@ export default function MissionSimulatorModal({ isOpen, onClose }) {
           </div>
 
           {/* Scripted 90-Second Demo Button */}
-          <div className="p-4 rounded-xl bg-gradient-to-r from-purple-500/10 to-nasa-blue/10 border border-purple-500/30 flex items-center justify-between gap-4">
+          <div className="p-3.5 sm:p-4 rounded-xl bg-gradient-to-r from-purple-500/10 to-nasa-blue/10 border border-purple-500/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
             <div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 flex-wrap">
                 <span className="text-xs font-bold text-gray-900 dark:text-white">SCRIPTED 90-SEC JUDGES' DEMO</span>
                 {isDemoModeRunning && (
                   <span className="px-2 py-0.5 rounded-full text-[9px] font-bold bg-purple-500 text-white animate-pulse">
@@ -156,7 +157,7 @@ export default function MissionSimulatorModal({ isOpen, onClose }) {
                   </span>
                 )}
               </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
+              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                 Automatically sequences through all 5 medical emergencies, changing suit nodes, charts, alerts, and AI bubble.
               </p>
             </div>
@@ -164,16 +165,16 @@ export default function MissionSimulatorModal({ isOpen, onClose }) {
             {isDemoModeRunning ? (
               <button
                 onClick={handleStopDemo}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-red-600 hover:bg-red-700 text-white transition-colors"
+                className="min-h-[44px] w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold bg-red-600 hover:bg-red-700 text-white transition-colors flex items-center justify-center shrink-0"
               >
                 Stop Demo
               </button>
             ) : (
               <button
                 onClick={handleStartDemo}
-                className="px-4 py-2 rounded-xl text-xs font-bold bg-purple-600 hover:bg-purple-700 text-white shadow transition-all flex items-center gap-1.5"
+                className="min-h-[44px] w-full sm:w-auto px-4 py-2.5 rounded-xl text-xs font-bold bg-purple-600 hover:bg-purple-700 text-white shadow transition-all flex items-center justify-center gap-1.5 shrink-0"
               >
-                <Play className="w-3.5 h-3.5" />
+                <Play className="w-4 h-4 shrink-0" />
                 <span>Run Demo Mode</span>
               </button>
             )}
@@ -203,7 +204,7 @@ export default function MissionSimulatorModal({ isOpen, onClose }) {
                   <button
                     key={scen.type}
                     onClick={() => setActiveScenario(isActive ? null : scen)}
-                    className={`p-3 rounded-xl border text-left transition-all ${
+                    className={`min-h-[44px] p-3 rounded-xl border text-left transition-all ${
                       isActive
                         ? 'border-red-500 bg-red-50 dark:bg-red-950/30 ring-2 ring-red-400'
                         : 'border-gray-200 dark:border-space-700 hover:bg-gray-50 dark:hover:bg-space-800'
@@ -231,10 +232,10 @@ export default function MissionSimulatorModal({ isOpen, onClose }) {
         </div>
 
         {/* Footer */}
-        <div className="p-3.5 bg-gray-50 dark:bg-space-800 border-t border-gray-200 dark:border-space-700 flex justify-end">
+        <div className="p-3 sm:p-3.5 bg-gray-50 dark:bg-space-800 border-t border-gray-200 dark:border-space-700 flex justify-end shrink-0">
           <button
             onClick={onClose}
-            className="px-4 py-1.5 rounded-lg text-xs font-semibold bg-gray-200 dark:bg-space-700 hover:bg-gray-300 dark:hover:bg-space-600 text-gray-800 dark:text-gray-200"
+            className="min-h-[44px] px-5 py-2 rounded-xl text-xs font-bold bg-gray-200 dark:bg-space-700 hover:bg-gray-300 dark:hover:bg-space-600 text-gray-800 dark:text-gray-200 transition-colors flex items-center justify-center"
           >
             Close Console
           </button>

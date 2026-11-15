@@ -29,12 +29,12 @@ export default function CardiovascularTab() {
           </p>
         </div>
 
-        <div className="flex bg-gray-100 dark:bg-space-800 p-1 rounded-lg border border-gray-200 dark:border-space-700 self-start sm:self-auto">
+        <div className="flex bg-gray-100 dark:bg-space-800 p-1 rounded-xl border border-gray-200 dark:border-space-700 self-start sm:self-auto">
           {['24h', '7d', 'mission'].map((range) => (
             <button
               key={range}
               onClick={() => setTrendRange(range)}
-              className={`px-3 py-1 rounded-md text-xs font-bold uppercase transition-colors ${
+              className={`min-h-[40px] px-3.5 py-1.5 rounded-lg text-xs font-bold uppercase transition-colors flex items-center justify-center ${
                 trendRange === range
                   ? 'bg-nasa-blue text-white shadow-sm'
                   : 'text-gray-500 hover:text-gray-900 dark:hover:text-white'
@@ -47,7 +47,7 @@ export default function CardiovascularTab() {
       </div>
 
       {/* Primary KPI Metric Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
         <div className="mission-card">
           <span className="text-[10px] text-gray-400 font-bold uppercase">Current Pulse</span>
           <p className="mono-data text-2xl font-extrabold text-red-500 mt-1">

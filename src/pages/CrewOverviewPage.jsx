@@ -36,7 +36,7 @@ export default function CrewOverviewPage() {
 
         <button
           onClick={() => setProfileModalOpen(true, null)}
-          className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-nasa-blue hover:bg-blue-700 text-white shadow transition-all self-start sm:self-auto"
+          className="min-h-[44px] flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-nasa-blue hover:bg-blue-700 text-white shadow transition-all self-start sm:self-auto"
         >
           <UserPlus className="w-4 h-4" />
           <span>Add Astronaut Profile</span>
@@ -53,11 +53,10 @@ export default function CrewOverviewPage() {
           return (
             <div
               key={astro.id}
-              className={`mission-card flex flex-col justify-between transition-all ${
-                isSelected
+              className={`mission-card flex flex-col justify-between transition-all ${isSelected
                   ? 'ring-2 ring-nasa-blue dark:ring-nasa-blueLight shadow-lg'
                   : 'hover:border-gray-300 dark:hover:border-space-600'
-              }`}
+                }`}
             >
               <div>
                 <div className="flex items-start justify-between mb-3">
@@ -67,10 +66,11 @@ export default function CrewOverviewPage() {
                   <div className="flex items-center gap-1.5">
                     <button
                       onClick={(e) => { e.stopPropagation(); setProfileModalOpen(true, astro); }}
-                      className="p-1 rounded text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
+                      className="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl text-gray-400 hover:text-gray-600 dark:hover:text-gray-200"
                       title="Edit Profile"
+                      aria-label="Edit Profile"
                     >
-                      <Edit className="w-3.5 h-3.5" />
+                      <Edit className="w-4 h-4" />
                     </button>
                     <span className={`status-${health.status}`}>
                       {health.status.toUpperCase()}
@@ -78,7 +78,7 @@ export default function CrewOverviewPage() {
                   </div>
                 </div>
 
-                <h3 className="text-sm font-bold text-gray-900 dark:text-white">
+                <h3 className="text-sm sm:text-base font-bold text-gray-900 dark:text-white">
                   {astro.name}
                 </h3>
                 <p className="text-xs text-gray-400 mb-3">{astro.role}</p>
@@ -124,11 +124,10 @@ export default function CrewOverviewPage() {
               {/* Action */}
               <button
                 onClick={() => { selectAstronaut(astro.id); navigate('/'); }}
-                className={`w-full py-2 rounded-lg text-xs font-bold transition-colors flex items-center justify-center gap-1.5 ${
-                  isSelected
+                className={`w-full min-h-[44px] py-2.5 px-3 rounded-xl text-xs font-bold transition-colors flex items-center justify-center gap-1.5 ${isSelected
                     ? 'bg-nasa-blue text-white'
                     : 'bg-gray-100 dark:bg-space-800 hover:bg-nasa-blue hover:text-white text-gray-700 dark:text-gray-200'
-                }`}
+                  }`}
               >
                 <span>{isSelected ? 'Currently Monitored' : 'Switch Telemetry to Crew'}</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -139,12 +138,12 @@ export default function CrewOverviewPage() {
       </div>
 
       {/* Comparative Table */}
-      <div className="mission-card">
-        <h3 className="heading-display text-sm font-bold text-gray-900 dark:text-white mb-3">
+      <div className="mission-card overflow-hidden">
+        <h3 className="heading-display text-xs sm:text-sm font-bold text-gray-900 dark:text-white mb-3">
           DETAILED EXPEDITION BIOMETRIC LOG (NASA-STD-3001)
         </h3>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
+        <div className="overflow-x-auto -mx-1 sm:mx-0 scrollbar-thin">
+          <table className="w-full text-left text-xs sm:text-sm min-w-[650px]">
             <thead>
               <tr className="border-b border-gray-200 dark:border-space-700 text-[10px] text-gray-400 uppercase">
                 <th className="pb-2">Astronaut</th>

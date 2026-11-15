@@ -23,6 +23,8 @@
     background-color: var(--bg-main);
     color: var(--text-primary);
     font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
     transition: background-color 0.25s ease, color 0.25s ease;
     overflow-x: hidden;
   }
@@ -32,10 +34,16 @@
   .mission-card {
     background-color: var(--panel-bg);
     border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    padding: 1.25rem;
+    padding: 1rem;
     transition: all 0.2s ease;
+  }
+
+  @media (min-width: 640px) {
+    .mission-card {
+      padding: 1.25rem;
+    }
   }
 
   .mission-card:hover {

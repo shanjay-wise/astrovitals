@@ -66,18 +66,18 @@ export default function DashboardPage() {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <button
             onClick={() => navigate('/crew')}
-            className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white dark:bg-space-800 hover:bg-gray-100 dark:hover:bg-space-700 border border-gray-200 dark:border-space-700 text-gray-700 dark:text-gray-200 transition-colors"
+            className="min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-semibold bg-white dark:bg-space-800 hover:bg-gray-100 dark:hover:bg-space-700 border border-gray-200 dark:border-space-700 text-gray-700 dark:text-gray-200 transition-colors flex items-center justify-center"
           >
             Crew Table
           </button>
           <button
             onClick={() => setSimulatorModalOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold bg-nasa-blue hover:bg-blue-700 text-white shadow transition-all"
+            className="min-h-[44px] flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-nasa-blue hover:bg-blue-700 text-white shadow transition-all"
           >
-            <Sliders className="w-3.5 h-3.5 text-amber-300" />
+            <Sliders className="w-4 h-4 text-amber-300" />
             <span>Launch Simulator</span>
           </button>
         </div>

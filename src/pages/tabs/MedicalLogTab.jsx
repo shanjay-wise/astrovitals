@@ -72,20 +72,20 @@ export default function MedicalLogTab() {
           </p>
         </div>
 
-        <div className="flex items-center gap-2 self-start sm:self-auto">
+        <div className="flex flex-wrap items-center gap-2 self-start sm:self-auto">
           <button
             onClick={handleExportCsv}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-gray-100 dark:bg-space-800 hover:bg-gray-200 dark:hover:bg-space-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-space-700 transition-colors"
+            className="min-h-[44px] flex items-center justify-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-gray-100 dark:bg-space-800 hover:bg-gray-200 dark:hover:bg-space-700 text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-space-700 transition-colors"
           >
-            <Download className="w-3.5 h-3.5" />
+            <Download className="w-4 h-4 shrink-0" />
             <span>Export CSV</span>
           </button>
 
           <button
             onClick={handleExportPdf}
-            className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold bg-nasa-blue hover:bg-blue-700 text-white shadow transition-all"
+            className="min-h-[44px] flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-nasa-blue hover:bg-blue-700 text-white shadow transition-all"
           >
-            {downloadSuccess ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Printer className="w-3.5 h-3.5" />}
+            {downloadSuccess ? <Check className="w-4 h-4 text-emerald-400 shrink-0" /> : <Printer className="w-4 h-4 shrink-0" />}
             <span>{downloadSuccess ? 'PDF Generated!' : 'Generate Official PDF Report'}</span>
           </button>
         </div>
@@ -94,7 +94,7 @@ export default function MedicalLogTab() {
       {/* Profile Overview Card */}
       <div className="mission-card flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <span className="text-3xl p-2.5 rounded-xl bg-gray-50 dark:bg-space-800 border border-gray-200 dark:border-space-700">
+          <span className="text-3xl p-2.5 rounded-xl bg-gray-50 dark:bg-space-800 border border-gray-200 dark:border-space-700 shrink-0">
             {currentAstro.avatar}
           </span>
           <div>
@@ -108,11 +108,11 @@ export default function MedicalLogTab() {
         </div>
 
         <div className="flex items-center gap-4 text-xs">
-          <div className="text-right">
+          <div className="text-left sm:text-right">
             <span className="text-[10px] text-gray-400 uppercase font-bold">Mission Status</span>
             <p className="font-bold text-emerald-500">FIT FOR FLIGHT</p>
           </div>
-          <div className="text-right">
+          <div className="text-left sm:text-right">
             <span className="text-[10px] text-gray-400 uppercase font-bold">Cumulative MET</span>
             <p className="mono-data font-bold text-gray-900 dark:text-white">Day {currentAstro.missionDay} of 280</p>
           </div>
@@ -131,14 +131,14 @@ export default function MedicalLogTab() {
             placeholder="Document clinical observations, diagnostic findings, or prescribed protocol adjustments..."
             value={newNote}
             onChange={(e) => setNewNote(e.target.value)}
-            className="w-full p-3 rounded-xl border border-gray-200 dark:border-space-700 bg-gray-50 dark:bg-space-800 text-gray-900 dark:text-white text-xs"
+            className="w-full p-3 rounded-xl border border-gray-200 dark:border-space-700 bg-gray-50 dark:bg-space-800 text-gray-900 dark:text-white text-xs sm:text-sm"
           />
           <div className="flex justify-end">
             <button
               type="submit"
-              className="px-4 py-2 rounded-xl text-xs font-bold bg-nasa-blue hover:bg-blue-700 text-white shadow transition-all flex items-center gap-1.5"
+              className="min-h-[44px] px-5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-nasa-blue hover:bg-blue-700 text-white shadow transition-all flex items-center justify-center gap-2"
             >
-              <Plus className="w-3.5 h-3.5" />
+              <Plus className="w-4 h-4 shrink-0" />
               <span>Record Clinical Note</span>
             </button>
           </div>

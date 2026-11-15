@@ -20,9 +20,9 @@ export default function ReferenceBandChart({
   const { darkMode } = useAstroStore()
 
   return (
-    <div className="w-full" style={{ height }}>
+    <div className="w-full min-w-0" style={{ height }}>
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={data} margin={{ top: 10, right: 10, left: -10, bottom: 0 }}>
+        <AreaChart data={data} margin={{ top: 10, right: 10, left: -5, bottom: 0 }}>
           <defs>
             <linearGradient id={`grad-${dataKey}`} x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor={color} stopOpacity={0.3} />
@@ -51,8 +51,19 @@ export default function ReferenceBandChart({
           )}
 
           <CartesianGrid strokeDasharray="3 3" stroke={darkMode ? '#1A2742' : '#E2E8F0'} />
-          <XAxis dataKey={timeKey} tick={{ fontSize: 10 }} stroke={darkMode ? '#64748B' : '#94A3B8'} />
-          <YAxis domain={domain} tick={{ fontSize: 10 }} stroke={darkMode ? '#64748B' : '#94A3B8'} unit={unit ? ` ${unit}` : ''} />
+          <XAxis
+            dataKey={timeKey}
+            tick={{ fontSize: 10 }}
+            stroke={darkMode ? '#64748B' : '#94A3B8'}
+            minTickGap={20}
+          />
+          <YAxis
+            domain={domain}
+            tick={{ fontSize: 10 }}
+            stroke={darkMode ? '#64748B' : '#94A3B8'}
+            unit={unit ? ` ${unit}` : ''}
+            width={38}
+          />
           <Tooltip
             contentStyle={{
               backgroundColor: darkMode ? '#0B1220' : '#FFFFFF',

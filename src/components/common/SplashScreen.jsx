@@ -27,10 +27,10 @@ export default function SplashScreen({ onDismiss }) {
   const bgUrl = apod?.hdurl || apod?.url || 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80'
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden bg-space-950 text-white select-none transition-opacity duration-700">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 overflow-y-auto bg-space-950 text-white select-none transition-opacity duration-700 min-h-[100dvh]">
       {/* Background NASA APOD Image with Mission-Control Vignette */}
       <div
-        className="absolute inset-0 bg-cover bg-center transition-all duration-1000 transform scale-105"
+        className="absolute inset-0 bg-cover bg-center transition-all duration-1000 transform scale-105 max-w-full"
         style={{
           backgroundImage: `url(${bgUrl})`,
           filter: 'brightness(0.35) contrast(1.1)'
@@ -48,7 +48,7 @@ export default function SplashScreen({ onDismiss }) {
       />
 
       {/* Center Modal / Splash Content */}
-      <div className="relative z-10 max-w-xl mx-4 p-6 sm:p-8 rounded-2xl bg-space-900/85 backdrop-blur-xl border border-nasa-blue/40 shadow-2xl text-center space-y-6 animate-fade-in">
+      <div className="relative z-10 max-w-xl w-full my-auto max-h-[calc(100dvh-2rem)] overflow-y-auto p-5 sm:p-8 rounded-2xl bg-space-900/85 backdrop-blur-xl border border-nasa-blue/40 shadow-2xl text-center space-y-4 sm:space-y-6 animate-fade-in">
         {/* Custom AstroVitals Animated SVG Insignia */}
         <div className="flex justify-center">
           <div className="relative p-3 rounded-2xl bg-space-800/80 border border-nasa-blue/30 shadow-lg shadow-nasa-blue/10">
