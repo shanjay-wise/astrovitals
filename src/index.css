@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-main: #F4F6FA;
+    --panel-bg: #FFFFFF;
+    --border-color: #E2E8F0;
+    --text-primary: #0B1220;
+    --text-secondary: #64748B;
+  }
+
+  .dark {
+    --bg-main: #05070D;
+    --panel-bg: #0B1220;
+    --border-color: #1A2742;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.25s ease, color 0.25s ease;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .mission-card {
+    background-color: var(--panel-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    padding: 1.25rem;
+    transition: all 0.2s ease;
+  }
+
+  .mission-card:hover {
+    border-color: rgba(30, 107, 255, 0.4);
+    box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.08);
+  }
+
+  .heading-display {
+    font-family: 'Orbitron', 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+
+  .mono-data {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .status-badge {
+    @apply inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider;
+  }
+
+  .status-nominal {
+    @apply status-badge bg-emerald-100 text-emerald-800 dark:bg-emerald-950/60 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800/60;
+  }
+
+  .status-caution, .status-warning {
+    @apply status-badge bg-amber-100 text-amber-800 dark:bg-amber-950/60 dark:text-amber-400 border border-amber-300 dark:border-amber-800/60;
+  }
+
+  .status-critical {
+    @apply status-badge bg-red-100 text-red-800 dark:bg-red-950/60 dark:text-red-400 border border-red-300 dark:border-red-800/60 animate-pulse;
+  }
+
+  .status-nodata {
+    @apply status-badge bg-slate-100 text-slate-800 dark:bg-slate-900/60 dark:text-slate-400 border border-slate-300 dark:border-slate-700;
+  }
+
+  .nav-item {
+    @apply flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs font-semibold text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-space-800 hover:text-gray-900 dark:hover:text-white transition-all;
+  }
+
+  .nav-item.active {
+    background-color: rgba(11, 61, 145, 0.12);
+    color: #0B3D91;
+    border-left: 3px solid #0B3D91;
+    font-weight: 700;
+  }
+
+  .dark .nav-item.active {
+    background-color: rgba(30, 107, 255, 0.2);
+    color: #1E6BFF;
+    border-left: 3px solid #1E6BFF;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}

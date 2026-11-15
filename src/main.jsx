@@ -1,0 +1,22 @@
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { BrowserRouter } from 'react-router-dom'
+import App from './App'
+import { useAstroStore } from './store/useAstroStore'
+import './index.css'
+
+// Initialize theme state on documentElement
+const isDark = useAstroStore.getState().darkMode
+if (isDark) {
+  document.documentElement.classList.add('dark')
+} else {
+  document.documentElement.classList.remove('dark')
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </React.StrictMode>
+)
